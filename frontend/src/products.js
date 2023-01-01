@@ -15,7 +15,7 @@ const products = [
     {
         _id: '2',
         name: 'Old School Surfboard',
-        image: '/images/istockphoto-941325138-612x612.jpg',
+        image: '/images/96-Point-Classic-Woody-Second-Hand-Surfboard.webp',
         description:
             "Softech Lil' Ripper Surfboard",
         brand: 'Surfdome',
@@ -25,5 +25,20 @@ const products = [
         rating: 4.8,
         numReviews: 19
     },
+    {
+        _id: '3',
+        name: 'Blue Ultimate Longboard',
+        image: '/images/ULTIMATE-LONGBOARD-POLY-BLUE-RESIN-TINT.webp',
+        description:
+            "Ultimate Longboard,perfect for a long surfing session without getting too tired.",
+        brand: 'Ultimate',
+        category: 'LongBoards',
+        price: 69.99,
+        unitsInStock: 30,
+        rating: 4.3,
+        numReviews: 12
+    },
 
 ]
+
+export default products
