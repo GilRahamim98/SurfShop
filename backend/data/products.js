@@ -1,6 +1,5 @@
 const products = [
     {
-        _id: '1',
         name: 'Red surfboard',
         image: '/images/GoFish_Red_1500px_740x.webp',
         description:
@@ -13,7 +12,6 @@ const products = [
         numReviews: 15
     },
     {
-        _id: '2',
         name: 'Old School Surfboard',
         image: '/images/96-Point-Classic-Woody-Second-Hand-Surfboard.webp',
         description:
@@ -26,7 +24,6 @@ const products = [
         numReviews: 19
     },
     {
-        _id: '3',
         name: 'Blue Ultimate Longboard',
         image: '/images/ULTIMATE-LONGBOARD-POLY-BLUE-RESIN-TINT.webp',
         description:
@@ -37,6 +34,18 @@ const products = [
         unitsInStock: 30,
         rating: 4.3,
         numReviews: 12
+    },
+    {
+        name: 'SHARP EYE DARK ARTS INFERNO FT SURFBOARD - FCS II',
+        image: '/images/sharp_eye_dark_arts_400x.webp',
+        description:
+            "The Inferno FT (Limited Edition) from SharpEye Surfboards delivers you the world’s fastest surfboard with Unparalleled Acceleration, Speed and Flow. An evolution of the Inferno 72, the Inferno FT features a Quad fin design with a medium single concave that runs into a deep double concave between the fins that flows into a flat exit through the tail. This bottom contour, combined with the same proven rocker from the Inferno 72, allows electric performance in a vast range of wave types and sizes.",
+        brand: 'SharpEye',
+        category: 'SurfBoards',
+        price: 1292.00,
+        unitsInStock: 10,
+        rating: 4.9,
+        numReviews: 7
     },
 
 ]
