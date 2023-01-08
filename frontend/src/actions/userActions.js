@@ -56,7 +56,20 @@ export const login = (email, password) => async (dispatch) => {
         })
     }
 }
-export const logout = () => (dispatch) => {
+export const logout = (user, cart) => async (dispatch, getState) => {
+    const { userLogin: { userInfo } } = getState()
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userInfo.token}`
+        }
+    }
+    await axios.put(
+        `/api/user/${user._id}/cart`,
+        JSON.stringify(cart),
+        config
+    )
+
     localStorage.removeItem('userInfo')
     dispatch({ type: USER_LOGOUT })
     dispatch({ type: USER_DETAILS_RESET })
