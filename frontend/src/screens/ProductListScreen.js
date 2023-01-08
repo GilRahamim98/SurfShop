@@ -42,6 +42,10 @@ const ProductListScreen = () => {
 
     const addProductHandler = () => {
         dispatch(addProduct())
+        if (successAdd) {
+            console.log("hey");
+            navigate(`/admin/product/${addedProduct._id}/edit`)
+        }
 
     }
 

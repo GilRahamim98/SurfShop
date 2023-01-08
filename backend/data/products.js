@@ -1,7 +1,7 @@
 const products = [
     {
         name: 'Red surfboard',
-        image: '/images/GoFish_Red_1500px_740x.webp',
+        image: '/images/GoFish_Red_1500px_740x.jpg',
         description:
             "Every surfer needs a surfboard that replicates the flow, the style, and the smooth glide of a classical template surfboard. A fish surfboard is a perfect choice, as these retro-inspired shapes bring you right on back to the good ol' days of surfing.",
         brand: 'Go Fish',
@@ -13,7 +13,7 @@ const products = [
     },
     {
         name: 'Old School Surfboard',
-        image: '/images/96-Point-Classic-Woody-Second-Hand-Surfboard.webp',
+        image: '/images/96-Point-Classic-Woody-Second-Hand-Surfboard.jpg',
         description:
             "Softech Lil' Ripper Surfboard",
         brand: 'Surfdome',
@@ -25,7 +25,7 @@ const products = [
     },
     {
         name: 'Blue Ultimate Longboard',
-        image: '/images/ULTIMATE-LONGBOARD-POLY-BLUE-RESIN-TINT.webp',
+        image: '/images/ULTIMATE-LONGBOARD-POLY-BLUE-RESIN-TINT.jpg',
         description:
             "Ultimate Longboard,perfect for a long surfing session without getting too tired.",
         brand: 'Ultimate',
@@ -37,7 +37,7 @@ const products = [
     },
     {
         name: 'SHARP EYE DARK ARTS INFERNO FT SURFBOARD - FCS II',
-        image: '/images/sharp_eye_dark_arts_400x.webp',
+        image: '/images/sharp_eye_dark_arts_400x.jpg',
         description:
             "The Inferno FT (Limited Edition) from SharpEye Surfboards delivers you the world’s fastest surfboard with Unparalleled Acceleration, Speed and Flow. An evolution of the Inferno 72, the Inferno FT features a Quad fin design with a medium single concave that runs into a deep double concave between the fins that flows into a flat exit through the tail. This bottom contour, combined with the same proven rocker from the Inferno 72, allows electric performance in a vast range of wave types and sizes.",
         brand: 'SharpEye',
