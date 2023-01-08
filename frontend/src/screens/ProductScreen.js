@@ -6,7 +6,7 @@ import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { productDetails, createProductReview } from '../actions/productActions'
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import { PRODUCT_CREATE_REVIEW_RESET, PRODUCT_DETAILS_RESET } from '../constants/productConstants'
 import Meta from '../components/Meta'
 
 const ProductScreen = () => {
@@ -51,7 +51,7 @@ const ProductScreen = () => {
     }
     return (
         <>
-            <Link className='btn btn-dark my-3' to='/'>
+            <Link className='btn btn-dark my-3' to='/' onClick={() => dispatch({ type: PRODUCT_DETAILS_RESET })}>
                 Go Back
             </Link>
             {loading ?
@@ -114,8 +114,8 @@ const ProductScreen = () => {
                                                             Quantity
                                                         </Col>
                                                         <Col>
-                                                            <Form.Control
-                                                                as='select'
+                                                            <Form.Select
+
                                                                 value={quantity}
                                                                 onChange={(e) => setQuantity(e.target.value)}>
                                                                 {[...Array(product.unitsInStock).keys()].map(x => (
@@ -124,7 +124,7 @@ const ProductScreen = () => {
                                                                     </option>
                                                                 ))}
 
-                                                            </Form.Control>
+                                                            </Form.Select>
                                                         </Col>
                                                     </Row>
                                                 </ListGroup.Item>
