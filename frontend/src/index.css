@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;1,700&display=swap');
+
 main {
+  font-family: 'Raleway', sans-serif;
   min-height: 80vh;
 }
 
@@ -7,6 +10,7 @@ h3 {
 }
 
 h1 {
+  font-family: 'Raleway', sans-serif;
   font-size: 2.5rem;
   padding: 1rem 0;
 }
@@ -18,4 +22,37 @@ h2 {
 
 .rating span {
   margin: 0.1rem;
+}
+
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+
+.carousel-caption {
+  position: absolute;
+}
+
+.carousel-blur {
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+
+}
+
+.carousel-caption h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.carousel img {
+  height: 350px;
+}
+
+.carousel a {
+  margin: 0 auto;
+}
+
+.product-image {
+  height: 350px;
 }
