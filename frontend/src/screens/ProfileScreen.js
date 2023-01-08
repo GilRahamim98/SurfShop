@@ -5,6 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { getMyOrders } from '../actions/orderActions'
 
@@ -53,6 +54,7 @@ const ProfileScreen = () => {
     }
     return (
         <Row>
+            <Meta title="My Profile" />
             <Col md={3}>
                 <h1>User Profile</h1>
                 {message && <Message variant='danger'>{message}</Message>}
