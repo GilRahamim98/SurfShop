@@ -20,6 +20,10 @@ const userSchema = mongoose.Schema({
         required: true,
         default: false
     },
+    cart: {
+        type: String,
+        default: '{"cartItems":[],"shippingAddress":{},"paymentMethod":""}'
+    },
 }, {
     timestamps: true
 })

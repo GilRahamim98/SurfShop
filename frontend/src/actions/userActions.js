@@ -47,6 +47,10 @@ export const login = (email, password) => async (dispatch) => {
             payload: data
         })
         localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('cartItems', JSON.stringify(JSON.parse(data.cart).cartItems))
+        localStorage.setItem('paymentMethod', JSON.parse(data.cart).paymentMethod)
+        localStorage.setItem('shippingAddress', JSON.stringify(JSON.parse(data.cart).shippingAddress))
+
     } catch (error) {
         dispatch({
             type: USER_LOGIN_FAIL,
@@ -56,8 +60,9 @@ export const login = (email, password) => async (dispatch) => {
         })
     }
 }
-export const logout = (user, cart) => async (dispatch, getState) => {
-    const { userLogin: { userInfo } } = getState()
+export const logout = () => async (dispatch, getState) => {
+    const { userLogin: { userInfo }, cart } = getState()
+
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -65,18 +70,22 @@ export const logout = (user, cart) => async (dispatch, getState) => {
         }
     }
     await axios.put(
-        `/api/user/${user._id}/cart`,
-        JSON.stringify(cart),
+        `/api/users/${userInfo._id}/cart`, {
+        cart: JSON.stringify(cart),
+    },
         config
     )
 
     localStorage.removeItem('userInfo')
+    localStorage.removeItem('cartItems')
+    localStorage.removeItem('paymentMethod')
+    localStorage.removeItem('shippingAddress')
+
+
     dispatch({ type: USER_LOGOUT })
     dispatch({ type: USER_DETAILS_RESET })
     dispatch({ type: MY_ORDERS_RESET })
     dispatch({ type: USER_LIST_RESET })
-
-
 }
 
 export const register = (name, email, password) => async (dispatch) => {

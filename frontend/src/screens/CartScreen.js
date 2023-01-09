@@ -36,8 +36,8 @@ const CartScreen = () => {
                 <Meta title="Cart" />
                 <h1>Shopping Cart</h1>
                 {cartItems.length === 0
-                    ? <Message>There are no items in your cart
-                        <Link to="/">Start Adding</Link>
+                    ? <Message>There are no items in your cart {" "}
+                        <Link to="/">Start Adding Now!</Link>
                     </Message> :
                     (
                         <ListGroup variant='flush'>

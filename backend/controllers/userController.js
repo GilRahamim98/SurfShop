@@ -16,6 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
+            cart: user.cart,
             token: generateToken(user._id)
         })
     } else {
@@ -173,7 +174,7 @@ const updateUserCartOnLogout = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id)
 
     if (user) {
-        user.cart = JSON.stringify(req.body.cart)
+        user.cart = req.body.cart
 
         await user.save()
         res.json('Saved Successfully')
