@@ -2,14 +2,14 @@
   "name": "online_shop",
   "version": "1.0.0",
   "description": "MERN shopping cart app",
-  "main": "server.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server",
-    "server": "nodemon backend/server",
+    "start": "node backend/index",
+    "server": "nodemon backend/index",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run index\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d"
   },
