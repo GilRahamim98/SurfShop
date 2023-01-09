@@ -21,6 +21,7 @@ const LoginScreen = () => {
     useEffect(() => {
         if (userInfo) {
             navigate(redirect)
+            window.location.reload()
         }
     }, [navigate, userInfo, redirect])
 

@@ -8,6 +8,8 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants';
+import { CART_EMPTY } from '../constants/cartConstants'
+
 
 const OrderScreen = () => {
     const dispatch = useDispatch()
@@ -70,6 +72,8 @@ const OrderScreen = () => {
     }, [dispatch, orderId, successPay, order, successDeliver])
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(orderId, paymentResult))
+        dispatch({ type: CART_EMPTY })
+
 
     }
     const deliverHandler = () => {
