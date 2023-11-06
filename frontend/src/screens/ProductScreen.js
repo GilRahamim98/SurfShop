@@ -6,6 +6,7 @@ import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { productDetails, createProductReview } from '../actions/productActions'
+import { addToFavorites } from '../actions/favoritesActions'
 import { PRODUCT_CREATE_REVIEW_RESET, PRODUCT_DETAILS_RESET } from '../constants/productConstants'
 import Meta from '../components/Meta'
 
@@ -36,8 +37,14 @@ const ProductScreen = () => {
         }
         dispatch(productDetails(id))
     }, [dispatch, id, successProductReview])
+
     const addToCartHandler = () => {
         navigate(`/cart/${id}?qty=${quantity}`)
+
+    }
+
+    const addToFavoritesHandler = () => {
+        dispatch(addToFavorites(id))
 
     }
     const submitHandler = (e) => {
@@ -136,6 +143,12 @@ const ProductScreen = () => {
                                                     onClick={addToCartHandler}
                                                 >
                                                     ADD TO CART
+                                                </Button>
+                                                <Button
+                                                    className='btn-block mx-auto' type='button'
+                                                    onClick={addToFavoritesHandler}
+                                                >
+                                                    ADD TO FAVORITES
                                                 </Button>
                                             </ListGroup.Item>
                                         </ListGroup>

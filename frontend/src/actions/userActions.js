@@ -48,6 +48,7 @@ export const login = (email, password) => async (dispatch) => {
         })
         localStorage.setItem('userInfo', JSON.stringify(data))
         localStorage.setItem('cartItems', JSON.stringify(JSON.parse(data.cart).cartItems))
+        localStorage.setItem('favoritesItems', JSON.stringify(data.favorites))
         localStorage.setItem('paymentMethod', JSON.parse(data.cart).paymentMethod)
         localStorage.setItem('shippingAddress', JSON.stringify(JSON.parse(data.cart).shippingAddress))
 
