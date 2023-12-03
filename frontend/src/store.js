@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { productListReducer, productDetailsReducer, productDeleteReducer, productAddReducer, productUpdateReducer, productReviewCreateReducer, productTopRatedReducer } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
+import { favoritesReducer } from './reducers/favoritesReducers'
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
 import { orderCreateReducer, orderDetailsReducer, orderPayReducer, myOrdersReducer, orderListReducer, orderDeliverReducer } from './reducers/orderReducers'
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
     productReviewCreate: productReviewCreateReducer,
     productTopRated: productTopRatedReducer,
     cart: cartReducer,
+    favorites:favoritesReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
@@ -30,12 +32,14 @@ const reducer = combineReducers({
     orderDeliver: orderDeliverReducer
 })
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+const favoritesItemsFromStorage = localStorage.getItem('favoritesItems') ? JSON.parse(localStorage.getItem('favoritesItems')) : []
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) == null ? {} : JSON.parse(localStorage.getItem('shippingAddress')) : {}
 const paymentMethodFromStorage = localStorage.getItem('paymentMethod') ? localStorage.getItem('paymentMethod') : ""
 
 const initialState = {
     cart: { cartItems: cartItemsFromStorage, shippingAddress: shippingAddressFromStorage, paymentMethod: paymentMethodFromStorage },
+    favorites:{favoritesItems:favoritesItemsFromStorage},
     userLogin: { userInfo: userInfoFromStorage },
 
 }

@@ -14,10 +14,9 @@ export const addToFavorites = (id) => async (dispatch, getState) => {
             name: data.name,
             image: data.image,
             price: data.price,
-            unitsInStock: data.unitsInStock,
         }
     })
-    localStorage.setItem('favoritesItems', JSON.stringify(getState().favorites))
+    localStorage.setItem('favoritesItems', JSON.stringify(getState().favorites.favoritesItems))
 }
 
 export const removeFromFavorites = (id) => (dispatch, getState) => {
@@ -25,6 +24,6 @@ export const removeFromFavorites = (id) => (dispatch, getState) => {
         type: FAVORITES_REMOVE_ITEM,
         payload: id
     })
-    localStorage.setItem('favoritesItems', JSON.stringify(getState().favorites))
+    localStorage.setItem('favoritesItems', JSON.stringify(getState().favorites.favoritesItems))
 }
 

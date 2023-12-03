@@ -25,8 +25,8 @@ const userSchema = mongoose.Schema({
         default: '{"cartItems":[],"shippingAddress":{},"paymentMethod":""}'
     },
     favorites: {
-        type : [String],
-        default:[]
+        type : String,
+        default:'{"favoritesItems":[]}'
     }
 }, {
     timestamps: true

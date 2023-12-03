@@ -48,7 +48,7 @@ export const login = (email, password) => async (dispatch) => {
         })
         localStorage.setItem('userInfo', JSON.stringify(data))
         localStorage.setItem('cartItems', JSON.stringify(JSON.parse(data.cart).cartItems))
-        localStorage.setItem('favoritesItems', JSON.stringify(data.favorites))
+        localStorage.setItem('favoritesItems', JSON.stringify(JSON.parse(data.favorites).favoritesItems))
         localStorage.setItem('paymentMethod', JSON.parse(data.cart).paymentMethod)
         localStorage.setItem('shippingAddress', JSON.stringify(JSON.parse(data.cart).shippingAddress))
 
@@ -79,6 +79,7 @@ export const logout = () => async (dispatch, getState) => {
 
     localStorage.removeItem('userInfo')
     localStorage.removeItem('cartItems')
+    localStorage.removeItem('favoritesItems')
     localStorage.removeItem('paymentMethod')
     localStorage.removeItem('shippingAddress')
 

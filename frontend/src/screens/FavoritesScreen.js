@@ -14,6 +14,7 @@ const FavoritesScreen = () => {
     const dispatch = useDispatch()
 
     const favorites = useSelector(state => state.favorites)
+    const {favoritesItems}=favorites
 
     useEffect(() => {
         if (id) {
@@ -30,16 +31,16 @@ const FavoritesScreen = () => {
             <Col md={8}>
                 <Meta title="Favorites" />
                 <h1>Your Favorites</h1>
-                {favorites === undefined 
+                {favoritesItems.length === 0
                     ? <Message>You didn't like anything yet! {" "}
                         <Link to="/">Start Liking Now!</Link>
                     </Message> :
                     (
                         <ListGroup variant='flush'>
-                            {favorites.map(favoritesItem => (
+                            {favoritesItems.map(favoritesItem => (
                                 <ListGroup.Item key={favoritesItem.product}>
                                     <Row>
-                                        <Col md={2}>
+                                        <Col md={3}>
                                             <Image src={favoritesItem.image}
                                                 alt={favoritesItem.name} fluid rounded />
                                         </Col>
