@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { PayPalButton } from "react-paypal-button-v2";
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,13 +8,15 @@ import Loader from '../components/Loader'
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants';
 import { CART_EMPTY } from '../constants/cartConstants'
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 
 
 const OrderScreen = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { orderId } = useParams()
-    const [sdkReady, setSdkReady] = useState(false)
+    const [clientId,setClientId] = useState("");
 
     const orderDetails = useSelector(state => state.orderDetails)
     const { order, loading, error } = orderDetails
@@ -37,37 +38,28 @@ const OrderScreen = () => {
         order.itemsPrice = addDecimals(order.orderItems.reduce((acc, item) => acc + item.quantity * item.price, 0))
     }
 
+    useEffect(() => {
+        const fetchClientId = async () => {
+            const { data: clientId } = await axios.get('/api/config/paypal');
+            setClientId(clientId);
+        };
+
+        fetchClientId();
+    }, []);
+
 
 
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
         }
-        const addPayPalScript = async () => {
-            const { data: clientId } = await axios.get('/api/config/paypal')
-            const script = document.createElement('script')
-            script.type = 'text/javascript'
-            script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
-            script.async = true
-            script.onload = () => {
-                setSdkReady(true)
-            }
-            document.body.appendChild(script)
-        }
+
         if (!order || successPay || successDeliver) {
             dispatch({ type: ORDER_PAY_RESET })
             dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(orderId))
 
-        } else if (!order.isPaid) {
-            if (!window.paypal) {
-                addPayPalScript()
-            } else {
-                setSdkReady(true)
-            }
-
         }
-
 
     }, [dispatch, orderId, successPay, order, successDeliver])
     const successPaymentHandler = (paymentResult) => {
@@ -171,11 +163,19 @@ const OrderScreen = () => {
                                                 <Col>${order.totalPrice}</Col>
                                             </Row>
                                         </ListGroup.Item>
-                                        {!order.isPaid && (
+                                        {!order.isPaid&& clientId &&  (
                                             <ListGroup.Item>
                                                 {loadingPay && <Loader />}
-                                                {!sdkReady ? <Loader /> :
-                                                    (<PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />)}
+                                                <PayPalScriptProvider options={{ "client-id": clientId}}>
+                                                    <PayPalButtons
+                                                        amount={order.totalPrice}
+                                                        onApprove={async (data, actions) => {   
+                                                            const paymentResult = await actions.order.capture();
+                                                            successPaymentHandler(paymentResult);
+                                                        }}
+                                                    />
+                                                </PayPalScriptProvider>
+
                                             </ListGroup.Item>
                                         )}
                                         {loadingDeliver && <Loader />}
